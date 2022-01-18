@@ -1,4 +1,4 @@
-node_modules
-test
-src/integration-tests/
-seed.js
+/tests
+**/migrations/
+**/seeders/
+**/models/index.js
