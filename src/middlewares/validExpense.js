@@ -6,7 +6,7 @@ const validExpense = (req, _res, next) => {
   const { error } = Joi.object({
     description: Joi.string().not().empty().required(),
     value: Joi.string().not().empty().required(),
-    date: Joi.array().not().empty().required(),
+    date: Joi.string().not().empty().required(),
   }).validate(req.body);
 
   if (error) return next(invalidData(error.message, httpStatusCodes.badRequest));
