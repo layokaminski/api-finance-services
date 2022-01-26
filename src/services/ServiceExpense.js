@@ -31,8 +31,20 @@ const getById = async (id) => {
   return getExpense;
 };
 
+const updateExpense = async (id, description, value, date) => {
+  const getExpense = await RepositoryExpenses
+    .updateExpense(id, description, value, date);
+
+  if (!getExpense) {
+    throw invalidData('Expense does not exist', httpStatusCodes.notFound);
+  }
+
+  return getExpense;
+};
+
 module.exports = {
   create,
   getAll,
   getById,
+  updateExpense,
 };

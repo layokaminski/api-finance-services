@@ -35,8 +35,23 @@ const getById = async (request, response, next) => {
   }
 };
 
+const updateExpense = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { description, value, date } = req.body;
+
+    const updatedExpense = await ServiceExpense
+      .updateExpense(id, description, value, date);
+
+    return res.status(httpStatusCodes.ok).json(updatedExpense);
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   create,
   getAll,
   getById,
+  updateExpense,
 };

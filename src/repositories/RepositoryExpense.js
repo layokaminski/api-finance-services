@@ -18,8 +18,17 @@ const getById = async (id) => {
   return getExpense;
 };
 
+const updateExpense = async (id, description, value, date) => {
+  await Expense.update({ id, description, value, date }, { where: { id } });
+
+  const getExpense = await Expense.findByPk(id);
+
+  return getExpense;
+};
+
 module.exports = {
   create,
   getAll,
   getById,
+  updateExpense,
 };
