@@ -12,7 +12,14 @@ const getAll = async () => {
   return getAllExpenses;
 };
 
+const getById = async (id) => {
+  const getExpense = await Expense.findByPk(id);
+
+  return getExpense;
+};
+
 module.exports = {
   create,
   getAll,
+  getById,
 };

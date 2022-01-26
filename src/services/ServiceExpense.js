@@ -6,7 +6,7 @@ const invalidData = require('../utils/invalidData');
 const create = async (description, value, date) => {
   if (date < moment().format('DD/MM/YYYY')) {
     throw invalidData('Late expenses cannot be placed',
-    httpStatusCodes.badRequest);
+      httpStatusCodes.badRequest);
   }
 
   const expense = await RepositoryExpenses
@@ -21,7 +21,18 @@ const getAll = async () => {
   return getAllExpenses;
 };
 
+const getById = async (id) => {
+  const getExpense = await RepositoryExpenses.getById(id);
+
+  if (!getExpense) {
+    throw invalidData('Expense does not exist', httpStatusCodes.notFound);
+  }
+
+  return getExpense;
+};
+
 module.exports = {
   create,
   getAll,
+  getById,
 };

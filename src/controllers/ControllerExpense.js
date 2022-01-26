@@ -23,7 +23,20 @@ const getAll = async (_request, response, next) => {
   }
 };
 
+const getById = async (request, response, next) => {
+  try {
+    const { params: { id } } = request;
+
+    const getExpense = await ServiceExpense.getById(id);
+
+    return response.status(httpStatusCodes.ok).json(getExpense);
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   create,
   getAll,
+  getById,
 };
